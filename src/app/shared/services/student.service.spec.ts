@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { Student } from 'src/app/model/Student';
+import { Student } from 'src/app/shared/model/Student';
 import { StudentService } from './student.service';
 
 describe('StudentService', () => {

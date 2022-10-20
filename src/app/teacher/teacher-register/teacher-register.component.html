@@ -1,0 +1,25 @@
+<h1>Teacher {{buttonMessage}}</h1>
+
+<mat-card>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="teacher.name" placeholder="Teacher's name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="teacher.email" placeholder="Teacher's email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Registration</mat-label>
+      <input matInput [(ngModel)]="teacher.registration" placeholder="Teacher's registration" />
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="insertOrUpdate()">{{buttonMessage}}</button>
+  </mat-card-actions>
+  <mat-card-actions>
+    <button mat-raised-button [routerLink]="['/teacher-list']">See all teachers</button>
+  </mat-card-actions>
+</mat-card>
