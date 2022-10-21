@@ -1,0 +1,13 @@
+<button
+  class="menu-button"
+  mat-raised-button 
+  color="primary" 
+  [matMenuTriggerFor]="menu"
+>
+  Menu
+</button>
+
+<mat-menu #menu="matMenu" class="menu">
+  <button mat-menu-item [routerLink]="['/teacher-register']">Teacher Register</button>
+  <button mat-menu-item [routerLink]="['/teacher-list']">Teachers List</button>
+</mat-menu>

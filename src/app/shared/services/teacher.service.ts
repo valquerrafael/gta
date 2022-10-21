@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Teacher } from 'src/app/model/Teacher';
+import { Teacher } from 'src/app/shared/model/Teacher';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class TeacherService {
   constructor(private httpClient: HttpClient) {}
 
   insertTeacher(teacher: Teacher): Observable<Teacher> {
-    return this.httpClient.post<Teacher>(this.URL_API, teacher);
+    return this.httpClient.post<Teacher>(this.URL_API, teacher)
   }
 
   getTeacher(id: number): Observable<Teacher> {
