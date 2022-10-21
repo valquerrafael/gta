@@ -1,10 +1,10 @@
 export class Teacher {
   id!: number;
-  name: string;
-  email: string;
-  registration: string;
+  name: string | undefined;
+  email: string | undefined;
+  registration: string | undefined;
 
-  constructor(name: string, email: string, registration: string) {
+  constructor(name?: string, email?: string, registration?: string) {
     this.name = name;
     this.email = email;
     this.registration = registration;
