@@ -32,6 +32,7 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     HttpClientModule
   ],
   exports: [
+    TeacherListComponent,
     TeacherRegisterComponent
   ]
 })
