@@ -1,7 +1,8 @@
-<h1>Teacher {{buttonMessage}}</h1>
+<h1 class="header">Teacher {{buttonMessage}}</h1>
 
 <mat-card>
-  <mat-card-content>
+  <h2>Teacher {{buttonMessage}}</h2>
+  <mat-card-content class="inputs">
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput [(ngModel)]="teacher.name" placeholder="Teacher's name" />
@@ -16,10 +17,10 @@
     </mat-form-field>
   </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-raised-button (click)="insertOrUpdate()">{{buttonMessage}}</button>
-  </mat-card-actions>
-  <mat-card-actions>
-    <button mat-raised-button [routerLink]="['/teacher-list']">See all teachers</button>
-  </mat-card-actions>
+  <div class="card-actions">
+    <mat-card-actions class="card-buttons">
+      <button mat-raised-button (click)="insertOrUpdate()">{{buttonMessage}}</button>
+      <button mat-raised-button [routerLink]="['/teacher-list']">See all teachers</button>
+    </mat-card-actions>
+  </div>
 </mat-card>
