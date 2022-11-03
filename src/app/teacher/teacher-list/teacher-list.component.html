@@ -8,7 +8,10 @@
   </mat-card-header>
   <mat-card-content>
     Email: {{teacher.email}} <br>
-    Registration: {{teacher.registration}}
+    Registration: {{teacher.registration}} <br>
+    <div *ngIf="teacher.phone">
+      Phone: {{teacher.phone | phone}}
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-icon-button (click)="delete(teacher.id)">

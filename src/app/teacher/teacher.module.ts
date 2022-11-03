@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherRegisterTableComponent } from './teacher-register-table/teacher-register-table.component';
+import { PipesModule } from "../shared/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TeacherRegisterTableComponent } from './teacher-register-table/teacher-
     MatInputModule,
     MatTableModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
   exports: [
     TeacherListComponent,
