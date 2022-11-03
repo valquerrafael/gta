@@ -9,14 +9,17 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule} from '@angular/material/table'
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { TeacherRegisterTableComponent } from './teacher-register-table/teacher-register-table.component';
 
 @NgModule({
   declarations: [
     TeacherRegisterComponent,
-    TeacherListComponent
+    TeacherListComponent,
+    TeacherRegisterTableComponent
   ],
   imports: [
     CommonModule,
@@ -28,12 +31,14 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
     RouterModule,
     HttpClientModule
   ],
   exports: [
     TeacherListComponent,
-    TeacherRegisterComponent
+    TeacherRegisterComponent,
+    TeacherRegisterTableComponent
   ]
 })
 export class TeacherModule { }

@@ -1,5 +1,12 @@
 {
   "institutions": [],
   "students": [],
-  "teachers": []
+  "teachers": [
+    {
+      "name": "Erick",
+      "email": "erick@teste.com",
+      "registration": "20211370030",
+      "id": 1
+    }
+  ]
 }
