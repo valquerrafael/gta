@@ -14,16 +14,24 @@ h2 {
 mat-card {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 30%;
     height: auto;
     border: 1px solid black;
     margin-top: 20px;
     margin-left: 20px;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
 .inputs {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0 10%;
 }
 
 .card-buttons button {
