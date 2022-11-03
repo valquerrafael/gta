@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { PipesModule } from "../shared/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     MatFormFieldModule,
     MatInputModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
   exports: [
     TeacherListComponent,
