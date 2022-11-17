@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDividerModule } from '@angular/material/divider';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     MatFormFieldModule,
     MatInputModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDividerModule
   ],
   exports: [
     TeacherListComponent,

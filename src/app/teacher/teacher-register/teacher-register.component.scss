@@ -1,14 +1,15 @@
-h2 {
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-}
 
 .header {
+    text-align: center;
     font-family: 'Roboto', sans-serif;
-    display: block;
-    margin-left: 20px;
-    color: #3f51b5;
+    font-weight: 300;
+    color: rgb(31, 86, 115);
+    margin: 10px 20px 20px 20px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
 }
 
 mat-card {
@@ -16,22 +17,44 @@ mat-card {
     flex-direction: column;
     width: 50%;
     height: auto;
-    border: 1px solid black;
-    margin-top: 20px;
-    margin-left: 20px;
+    border: 1px solid rgb(31, 86, 115);
+    border-radius: 30px;
+    margin: 20px;
 }
 
 .inputs {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 20px 20px;
+}
+
+.inputs mat-form-field {
+    width: auto;
+    margin: 10px;
+}
+
+.inputs mat-form-field input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: rgb(31, 86, 115);
 }
 
 .card-buttons button {
-    border: 1px solid black;
+    border: 1px solid rgb(31, 86, 115);
+    color: rgb(31, 86, 115);
+    box-shadow: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.card-buttons {
+    padding: 0;
+    margin: 30px 30px 10px 30px;
 }
 
 .card-actions {
     display: flex;
-    justify-content: center ;
+    justify-content: flex-end;
 }
 
