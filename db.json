@@ -1,5 +1,48 @@
 {
   "institutions": [],
   "students": [],
-  "teachers": []
+  "teachers": [
+    {
+      "name": "Erick Fonseca Martins Peixoto",
+      "email": "erickrdg@outlook.com",
+      "registration": "20211370030",
+      "id": 2
+    },
+    {
+      "name": "Walter da Silva Filho",
+      "email": "walter@teste.com.br",
+      "registration": "20211370033",
+      "id": 3
+    },
+    {
+      "name": "João Francisco da Silva",
+      "email": "joão@teste.com.br",
+      "registration": "0000000000",
+      "id": 4
+    },
+    {
+      "name": "Renato Afonso Gonçalves",
+      "email": "renato@teste.com.br",
+      "registration": "00000000000",
+      "id": 5
+    },
+    {
+      "name": "Yuri Silva",
+      "email": "yuri.silva@teste.com",
+      "registration": "00000000000",
+      "id": 6
+    },
+    {
+      "name": "Gustavo Pereira",
+      "email": "gustavo.pereira@teste.com",
+      "registration": "00000000000",
+      "id": 7
+    },
+    {
+      "name": "Fred Alcantara Simplicio",
+      "email": "fred.as@teste.com",
+      "registration": "00000000000",
+      "id": 8
+    }
+  ]
 }
