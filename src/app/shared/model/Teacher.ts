@@ -1,12 +1,13 @@
 export class Teacher {
-  id!: number;
-  name: string | undefined;
-  email: string | undefined;
-  registration: string | undefined;
+  id?: string;
+  name?: string | undefined;
+  email?: string | undefined;
+  registration?: string | undefined;
 
-  constructor(name?: string, email?: string, registration?: string) {
-    this.name = name;
-    this.email = email;
-    this.registration = registration;
+  constructor(teacher: Teacher = {}, id?: string) {
+    this.name = teacher.name;
+    this.email = teacher.email;
+    this.registration = teacher.registration;
+    this.id = id;
   }
 }

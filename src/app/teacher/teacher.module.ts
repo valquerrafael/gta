@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { FirestoreModule } from '../firestore/firestore.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
     MatInputModule,
     RouterModule,
     HttpClientModule,
-    MatDividerModule
+    MatDividerModule,
+    FirestoreModule
   ],
   exports: [
     TeacherListComponent,
