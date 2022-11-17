@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Teacher } from 'src/app/shared/model/Teacher';
-import { TeacherService } from 'src/app/shared/services/teacher.service';
+import { TeacherFirestoreService } from 'src/app/shared/services/teacher-firestore.service';
 
 @Component({
   selector: 'app-teacher-register',
@@ -15,17 +15,17 @@ export class TeacherRegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private actualRoute: ActivatedRoute,
-    private teacherService: TeacherService
+    private teacherFirestoreService: TeacherFirestoreService,
   ) {
-    this.teacher = new Teacher('', '', '');
+    this.teacher = new Teacher();
     this.buttonMessage = 'Register';
     
     const teacherId = this.actualRoute.snapshot.paramMap.get('id');
     if (teacherId) {
       this.buttonMessage = 'Update';
-      this.teacherService.getTeacher(parseInt(teacherId)).subscribe(
+      this.teacherFirestoreService.get(teacherId).subscribe(
         teacher => this.teacher = teacher
-      )
+      );
     }
   }
 
@@ -34,11 +34,11 @@ export class TeacherRegisterComponent implements OnInit {
 
   insertOrUpdate(): void {
     (this.buttonMessage.toLowerCase() === 'update')
-    ? this.teacherService.updateTeacher(this.teacher.id, this.teacher).subscribe(
-      teacher => this.router.navigate(['/teacher-list']),
-    )
-    : this.teacherService.insertTeacher(this.teacher).subscribe(
-        teacher => this.teacher = new Teacher('', '', ''),
+    ? this.teacherFirestoreService.update(this.teacher).subscribe(
+        teacher => this.router.navigate(['teacher-list']),
+      )
+    : this.teacherFirestoreService.insert(this.teacher).subscribe(
+        teacher => this.teacher = new Teacher(),
       );
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/shared/model/Teacher';
-import { TeacherService } from 'src/app/shared/services/teacher.service';
+import { TeacherFirestoreService } from 'src/app/shared/services/teacher-firestore.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -10,22 +10,20 @@ import { TeacherService } from 'src/app/shared/services/teacher.service';
 export class TeacherListComponent implements OnInit {
   teachers: Teacher[];
 
-  constructor(private teacherService: TeacherService) {
+  constructor(private teacherFirestoreService: TeacherFirestoreService) {
     this.teachers = new Array<Teacher>;
   }
 
   ngOnInit(): void {
-    this.teacherService.getAllTeachers().subscribe(
+    this.teacherFirestoreService.getAll().subscribe(
       teachers => this.teachers = teachers
     );
   }
 
-  delete(id: number): void {
-    this.teacherService.deleteTeacher(id).subscribe(
-      object => this.teachers.splice(
-        this.teachers.findIndex(teacher => teacher.id === id),
-        1
-      )
-    );
+  delete(id: string | undefined): void {
+    if (id)
+      this.teacherFirestoreService.delete(id).subscribe(
+        object => this.teachers = this.teachers.filter(teacher => teacher.id !== id)
+      );
   }
 }
