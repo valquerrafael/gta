@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDividerModule } from '@angular/material/divider';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { FirestoreModule } from '../firestore/firestore.module';
 
@@ -31,6 +32,7 @@ import { FirestoreModule } from '../firestore/firestore.module';
     MatInputModule,
     RouterModule,
     HttpClientModule,
+    MatDividerModule,
     FirestoreModule
   ],
   exports: [
