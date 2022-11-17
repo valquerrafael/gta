@@ -2,3 +2,12 @@
     font-family: 'Roboto', sans-serif;
     margin-left: 20px;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: rgb(31, 86, 115);
+    color: rgb(242, 239, 233);
+}

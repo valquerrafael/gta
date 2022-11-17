@@ -1,4 +1,4 @@
-<button
+<!-- <button
   class="menu-button"
   mat-raised-button 
   color="primary" 
@@ -8,6 +8,30 @@
 </button>
 
 <mat-menu #menu="matMenu" class="menu">
+  <button mat-menu-item [routerLink]="['/teacher-register']">Teacher Register</button>
+  <button mat-menu-item [routerLink]="['/teacher-list']">Teachers List</button>
+</mat-menu> -->
+
+<mat-toolbar>
+  <button 
+    mat-icon-button
+    class="menu-button" 
+    aria-label="menu-button"
+    [matMenuTriggerFor]="menu"
+    >
+    <mat-icon>
+      menu
+    </mat-icon>
+  </button>
+  <span>GTA</span>
+  <span class="example-spacer"></span>
+  <span>PWEB 1 - 2022.2 </span>
+  <button mat-icon-button class="academic-icon" aria-label="academic-icon">
+    <mat-icon>school</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" class="menu"> 
   <button mat-menu-item [routerLink]="['/teacher-register']">Teacher Register</button>
   <button mat-menu-item [routerLink]="['/teacher-list']">Teachers List</button>
 </mat-menu>
