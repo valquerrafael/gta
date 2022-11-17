@@ -1,22 +1,97 @@
-h2 {
+.component-card .header {
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-}
-
-.header {
-    font-family: 'Roboto', sans-serif;
-    display: block;
+    font-weight: 300;
+    color: rgb(90, 147, 103);
     margin-left: 20px;
-    color: #3f51b5;
+    margin-top: 10px;
 }
 
-mat-card {
+.component-card {
     display: flex;
     flex-direction: column;
-    width: 50%;
     height: auto;
-    border: 1px solid black;
-    margin-top: 20px;
+    border: 1px solid rgb(31, 86, 115);
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.component-card .list-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    width: auto;
+    height: 10%;
+    border: 1px solid rgb(110, 152, 135);
+    border-radius: 30px;
+    margin-bottom: 20px;
     margin-left: 20px;
+    margin-right: 20px;
+}
+
+mat-card-content {
+    margin: auto 0 auto 0 !important;
+}
+
+mat-card-actions {
+    margin: auto !important;
+    padding: 0%;
+}
+
+.name {
+    color: rgb(90, 147, 103);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(161, 134, 158, 0.1);
+    min-width: 30%;
+    max-width: 30%;
+}
+
+.email {
+    color: rgb(90, 147, 103);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    min-width: 25%;
+    max-width: 25%;
+    margin-left: 30px !important;
+}
+
+.email p {
+    font-size: 0.6em;
+    font-weight: 600;
+    color: rgba(90, 147, 103, 0.5);
+}
+
+.registration {
+    color: rgb(90, 147, 103);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    min-width: 25%;
+    max-width: 25%;
+    margin-left: 30px !important;
+}
+
+.registration p {
+    font-size: 0.6em;
+    font-weight: 600;
+    color: rgba(90, 147, 103, 0.5);
+}
+
+.button-delete, .button-edit {
+    color: rgba(161, 134, 158, 1);
+}
+
+mat-card-actions {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(161, 134, 158, 0.1);
+    align-items: center;
 }
