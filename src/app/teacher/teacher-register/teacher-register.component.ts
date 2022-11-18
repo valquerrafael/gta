@@ -35,10 +35,17 @@ export class TeacherRegisterComponent implements OnInit {
   insertOrUpdate(): void {
     (this.buttonMessage.toLowerCase() === 'update')
     ? this.teacherFirestoreService.update(this.teacher).subscribe(
-        teacher => this.router.navigate(['teacher-list']),
+        teacher => {
+          alert('Teacher updated successfully!');
+          this.router.navigate(['teacher-list']);
+        },
       )
     : this.teacherFirestoreService.insert(this.teacher).subscribe(
-        teacher => this.teacher = new Teacher(),
+        teacher => {
+          alert('Teacher registered successfully!');
+          this.teacher = new Teacher();
+        },
       );
+    ;
   }
 }
