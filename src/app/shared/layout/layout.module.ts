@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     CommonModule,
@@ -21,10 +21,10 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     RouterModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [
-    MenuComponent
+    MenuComponent,
   ]
 })
 export class LayoutModule { }

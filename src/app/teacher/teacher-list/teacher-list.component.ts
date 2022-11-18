@@ -23,7 +23,11 @@ export class TeacherListComponent implements OnInit {
   delete(id: string | undefined): void {
     if (id)
       this.teacherFirestoreService.delete(id).subscribe(
-        object => this.teachers = this.teachers.filter(teacher => teacher.id !== id)
+        object => 
+        {
+          alert("Teacher deleted successfully!");
+          this.teachers = this.teachers.filter(teacher => teacher.id !== id);
+        }
       );
   }
 }
