@@ -1,21 +1,55 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TeacherListComponent } from './teacher/teacher-list/teacher-list.component';
-import { TeacherRegisterComponent } from './teacher/teacher-register/teacher-register.component';
 
 const routes: Routes = [
   {
-    path: 'teacher-list',
-    component: TeacherListComponent
+    path: 'institutions/list',
+    component: InstitutionListComponent,
   },
   {
-    path: 'teacher-register',
-    component: TeacherRegisterComponent
+    path: 'institutions/create',
+    component: InstitutionCreateComponent,
   },
   {
-    path: 'teacher-update/:id',
-    component: TeacherRegisterComponent
-  }
+    path: 'institution/:id/update',
+    component: InstitutionUpdateComponent,
+  },
+  {
+    path: 'institution/:id/teachers',
+    component: InstitutionTeachersComponent,
+  },
+  {
+    path: 'institution/:id/teachers/create',
+    component: InstitutionTeacherCreateComponent,
+  },
+  {
+    path: 'institution/:id/teachers/:teacherId/update',
+    component: InstitutionTeacherUpdateComponent,
+  },
+  {
+    path: 'institution/:id/students',
+    component: InstitutionStudentsComponent,
+  },
+  {
+    path: 'institution/:id/students/create',
+    component: InstitutionStudentCreateComponent,
+  },
+  {
+    path: 'institution/:id/students/:studentId/update',
+    component: InstitutionStudentUpdateComponent,
+  },
+  {
+    path: 'institution/:id/trails',
+    component: InstitutionTrailsComponent,
+  },
+  {
+    path: 'institution/:id/trails/create',
+    component: InstitutionTrailCreateComponent,
+  },
+  {
+    path: 'institution/:id/trails/:trailId/update',
+    component: InstitutionTrailUpdateComponent,
+  },
 ]
 
 @NgModule({

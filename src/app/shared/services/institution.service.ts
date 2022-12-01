@@ -2,32 +2,32 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Institution } from 'src/app/shared/model/Institution';
+import { User } from '../model/User';
+import { EntityService } from './entity.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InstitutionService {
-  private URL_API = 'http://localhost:3000/institutions';
+export class InstitutionService extends EntityService<Institution> {
+  override API = `${super.API}/institutions`;
 
-  constructor(private httpClient: HttpClient) {}
-
-  insertInstitution(institution: Institution): Observable<Institution> {
-    return this.httpClient.post<Institution>(this.URL_API, institution);
+  constructor(private httpClient: HttpClient) {
+    super(httpClient);
   }
 
-  getInstitution(id: number): Observable<Institution> {
-    return this.httpClient.get<Institution>(`${this.URL_API}/${id}`);
+  addTeacher(id: number, teacher: User): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API}/${id}/add-teacher`, teacher);
   }
 
-  updateInstitution(id: number, institution: Institution): Observable<Institution> {
-    return this.httpClient.put<Institution>(`${this.URL_API}/${id}`, institution);
+  removeTeacher(id: number, teacher: User): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API}/${id}/remove-teacher`, teacher);
   }
 
-  deleteInstitution(id: number): Observable<object> {
-    return this.httpClient.delete(`${this.URL_API}/${id}`);
+  addStudent(id: number, student: User): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API}/${id}/add-student`, student);
   }
 
-  getAllInstitutions(): Observable<Institution[]> {
-    return this.httpClient.get<Institution[]>(this.URL_API);
+  removeStudent(id: number, student: User): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API}/${id}/remove-student`, student);
   }
 }

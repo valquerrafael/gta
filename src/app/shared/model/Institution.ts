@@ -1,10 +1,12 @@
+import { User } from "./User";
+
 export class Institution {
   id!: number;
   name: string;
-  email: string;
+  teachers: User[] = [];
+  students: User[] = [];
 
-  constructor(name: string, email: string) {
+  constructor(name: string) {
     this.name = name;
-    this.email = email;
   }
 }
