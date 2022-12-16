@@ -40,4 +40,12 @@ export class InstitutionService {
   getTrails(id: number): Observable<Trail[]> {
     return this.httpClient.get<Trail[]>(`${this.API_URL}/${id}/trails`);
   }
+
+  getAll(): Observable<Institution[]> {
+    return this.httpClient.get<Institution[]>(`${this.API_URL}`);
+  }
+
+  delete(id: number): Observable<object> {
+    return this.httpClient.delete(`${this.API_URL}/${id}`);
+  }
 }

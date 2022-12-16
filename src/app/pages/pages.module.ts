@@ -10,11 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { InstitutionListComponent } from './institution-list/institution-list.component';
 
 @NgModule({
   declarations: [
     EmptyComponent,
-    LoginComponent
+    LoginComponent,
+    InstitutionListComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     MatRadioModule,
     MatButtonModule,
     RouterModule,

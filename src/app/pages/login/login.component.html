@@ -7,22 +7,28 @@
   <div class="loginForm">
     <h1>Gestão de Trilha de Aprendizagem</h1>
     <mat-card>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>{{title}}</mat-card-title>
 
       <div class="radioButtons">
         <mat-radio-group aria-label="Select an option" color="primary">
           <mat-radio-button *ngFor="let entity of entities" [value]="entity"
-            (change)="changeEntity(entity)">{{entity}}</mat-radio-button>
+            (change)="changeEntity(entity)" checked>{{entity}}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class="formInputs">
         <p>
           <mat-form-field appearance="outline">
+            <mat-label>Insert your {{loginName}}</mat-label>
+            <input [(ngModel)]="loginForm" matInput placeholder="{{loginName}}">
+          </mat-form-field>
+        </p>
+        <!-- <p>
+          <mat-form-field appearance="outline">
             <mat-label>Insert your login</mat-label>
             <input [(ngModel)]="loginForm" matInput placeholder="Login">
           </mat-form-field>
-        </p>
+        </p> -->
         <p>  
           <mat-form-field appearance="outline">
             <mat-label>Insert your password</mat-label>

@@ -12,7 +12,7 @@ export abstract class UserService {
   private readonly API_URL = 'http://localhost:8080/api/';
 
   constructor(private httpClient: HttpClient, userRole: Role) {
-    this.API_URL += `${userRole}s`;
+    this.API_URL += `${userRole.toLocaleLowerCase()}s`;
   }
 
   login(email: string, password: string): Observable<User> {

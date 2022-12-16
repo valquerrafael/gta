@@ -11,8 +11,22 @@ import { TeacherService } from 'src/app/shared/services/teacher.service';
 export class LoginComponent implements OnInit {
   entities = ['Student', 'Teacher', 'Institution'];
   selectedEntity = '';
+
   loginForm = '';
   password = '';
+
+  possibleLoginNames = {
+    'student': 'CPF',
+    'teacher': 'CPF',
+    'institution': 'CNPJ'
+  };
+  loginName = '';
+
+  possibleTitles = {
+    login: 'Login',
+    register: 'Register'
+  };
+  title = '';
   
   private entityService = {
     'student': this.studentService,
@@ -27,6 +41,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.title = this.possibleTitles.login;
+    this.loginName = 'login';
   }
 
   login() {
@@ -36,6 +52,7 @@ export class LoginComponent implements OnInit {
 
   changeEntity(entity: string) {
     this.selectedEntity = entity.toLowerCase();
+    this.loginName = this.possibleLoginNames[this.selectedEntity];
   }
 
   changeToRegister() {
