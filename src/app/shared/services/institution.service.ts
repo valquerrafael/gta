@@ -2,32 +2,42 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Institution } from 'src/app/shared/model/Institution';
+import { Trail } from '../model/Trail';
 import { User } from '../model/User';
-import { EntityService } from './entity.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InstitutionService extends EntityService<Institution> {
-  override API = `${super.API}/institutions`;
+export class InstitutionService {
+  private readonly API_URL = 'http://localhost:8080/api/institutions';
 
-  constructor(private httpClient: HttpClient) {
-    super(httpClient);
+  constructor(protected httpClient: HttpClient) {}
+
+  login(email: string, password: string): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API_URL}/login`, { email, password });
   }
 
-  addTeacher(id: number, teacher: User): Observable<Institution> {
-    return this.httpClient.post<Institution>(`${this.API}/${id}/add-teacher`, teacher);
+  get(id: number): Observable<Institution> {
+    return this.httpClient.get<Institution>(`${this.API_URL}/${id}`);
   }
 
-  removeTeacher(id: number, teacher: User): Observable<Institution> {
-    return this.httpClient.post<Institution>(`${this.API}/${id}/remove-teacher`, teacher);
+  create(institution: Institution): Observable<Institution> {
+    return this.httpClient.post<Institution>(`${this.API_URL}`, institution);
   }
 
-  addStudent(id: number, student: User): Observable<Institution> {
-    return this.httpClient.post<Institution>(`${this.API}/${id}/add-student`, student);
+  update(id: number, institution: Institution): Observable<Institution> {
+    return this.httpClient.put<Institution>(`${this.API_URL}/${id}`, institution);
   }
 
-  removeStudent(id: number, student: User): Observable<Institution> {
-    return this.httpClient.post<Institution>(`${this.API}/${id}/remove-student`, student);
+  getTeachers(id: number): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.API_URL}/${id}/teachers`);
+  }
+
+  getStudents(id: number): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.API_URL}/${id}/students`);
+  }
+
+  getTrails(id: number): Observable<Trail[]> {
+    return this.httpClient.get<Trail[]>(`${this.API_URL}/${id}/trails`);
   }
 }

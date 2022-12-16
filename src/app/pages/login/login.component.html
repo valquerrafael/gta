@@ -11,31 +11,30 @@
 
       <div class="radioButtons">
         <mat-radio-group aria-label="Select an option" color="primary">
-          <mat-radio-button value="professor" checked>Professor</mat-radio-button>
-          <mat-radio-button value="aluno">Aluno</mat-radio-button>
-          <mat-radio-button value="instituicao">Instituição</mat-radio-button>
+          <mat-radio-button *ngFor="let entity of entities" [value]="entity"
+            (change)="changeEntity(entity)">{{entity}}</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class="formInputs">
         <p>
           <mat-form-field appearance="outline">
-            <mat-label>Digite seu login</mat-label>
-            <input matInput placeholder="Login">
+            <mat-label>Insert your login</mat-label>
+            <input [(ngModel)]="loginForm" matInput placeholder="Login">
           </mat-form-field>
         </p>
         <p>  
           <mat-form-field appearance="outline">
-            <mat-label>Digite sua senha</mat-label>
-            <input matInput placeholder="Senha">
+            <mat-label>Insert your password</mat-label>
+            <input [(ngModel)]="password" matInput placeholder="Password">
           </mat-form-field>
         </p>
       </div>
       <div class="formButton">
-        <button mat-flat-button color="primary">Login</button>
+        <button mat-flat-button color="primary" (click)="login()">Login</button>
       </div>
 
-      <a href="#">registre-se</a>
+      <a href="#">Register</a>
     </mat-card>
   </div>
 </div>
