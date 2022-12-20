@@ -7,17 +7,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { InstitutionListComponent } from './institution-list/institution-list.component';
+import { InstitutionHomeComponent } from './institution-home/institution-home.component';
 
 @NgModule({
   declarations: [
     EmptyComponent,
     LoginComponent,
-    InstitutionListComponent
+    InstitutionListComponent,
+    InstitutionHomeComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { InstitutionListComponent } from './institution-list/institution-list.co
     MatIconModule,
     MatRadioModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatTableModule,
     RouterModule,
     HttpClientModule
   ],
