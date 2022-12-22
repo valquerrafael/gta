@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { InstitutionListComponent } from './pages/institution-list/institution-list.component';
 import { InstitutionHomeComponent } from './pages/institution-home/institution-home.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'institution-list',
-    component: InstitutionListComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'institution-home',

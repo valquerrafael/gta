@@ -3,7 +3,7 @@
     <mat-toolbar class="topbar">
       <span>Gestão de Trilha de Aprendizagem</span>
       <div class="divider"></div>
-      <span>Home - Institution {{institution.name}}</span>
+      <span>Home - Institution IFPB</span>
     </mat-toolbar> 
   </p>
 </div>
@@ -12,19 +12,19 @@
   <mat-card class="institutionProfile">
     <div class="profileHeader">
       <mat-icon aria-label="Example home icon" fontIcon="school"></mat-icon>
-      <mat-card-title>{{institution.name}}Instituto Federal da Paraíba - IFPB</mat-card-title>
+      <mat-card-title>Instituto Federal da Paraíba - IFPB</mat-card-title>
     </div>
     <div class="dataSection">
       <div class="profileData1">
         <div class="divider"></div>
         <div class="id">
           <mat-card-subtitle>ID</mat-card-subtitle>
-          <p>{{institution.id}}1</p>
+          <p>1</p>
         </div>
         <div class="divider"></div>
         <div class="cnpj">
           <mat-card-subtitle>CNPJ</mat-card-subtitle>
-          <p>{{institution.cnpj}}00.000.000/0000-00</p>
+          <p>00.000.000/0000-00</p>
         </div>
         <div class="divider"></div>
         <div class="teachers">
@@ -52,7 +52,7 @@
   <mat-card class="institutionRanking">
     <div class="profileHeader">
       <mat-icon aria-label="Example home icon" fontIcon="insights"></mat-icon>
-      <mat-card-title>Students Rank - {{institution.name}} IFPB</mat-card-title>
+      <mat-card-title>Students Rank - IFPB</mat-card-title>
     </div>
     <div class="dataSection2">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">

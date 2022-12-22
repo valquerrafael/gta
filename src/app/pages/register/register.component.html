@@ -7,7 +7,7 @@
   <div class="loginForm">
     <h1>Gestão de Trilha de Aprendizagem</h1>
     <mat-card>
-      <mat-card-title>{{possibleTitles.login}}</mat-card-title>
+      <mat-card-title>{{title}}</mat-card-title>
 
       <div class="radioButtons">
         <mat-radio-group aria-label="Select an option" color="primary">
@@ -20,25 +20,27 @@
         <p>
           <mat-form-field appearance="outline">
             <mat-label>Insert your {{loginName}}</mat-label>
-            <input text [(ngModel)]="loginForm" matInput placeholder="{{loginName}}">
+            <input text [(ngModel)]="loginForm" matInput placeholder="{{loginName}}" required>
+            <mat-hint>cannot be empty</mat-hint>
           </mat-form-field>
         </p>
-        <!-- <p>
+        <p>
           <mat-form-field appearance="outline">
-            <mat-label>Insert your login</mat-label>
-            <input [(ngModel)]="loginForm" matInput placeholder="Login">
+            <mat-label>Insert your name</mat-label>
+            <input [(ngModel)]="name" matInput placeholder="Name" required>
+            <mat-hint>cannot be empty</mat-hint>
           </mat-form-field>
-        </p> -->
+        </p>
         <p>  
           <mat-form-field appearance="outline">
             <mat-label>Insert your password</mat-label>
-            <input [(ngModel)]="password" matInput placeholder="Password">
+            <input [(ngModel)]="password" matInput placeholder="Password" required>
+            <mat-hint>cannot be empty</mat-hint>
           </mat-form-field>
         </p>
       </div>
       <div class="formButton">
-        <button mat-flat-button color="primary" (click)="login()">Login</button>
-        <button mat-flat-button color="primary" (click)="changeToRegister()">Register</button>
+        <button mat-flat-button color="primary" (click)="register()" >Register</button>
       </div>
     </mat-card>
   </div>

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Institution } from 'src/app/shared/model/Institution';
-import { InstitutionService } from 'src/app/shared/services/institution.service';
 
 export interface PeriodicElement {
   name: string;
@@ -27,19 +25,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./institution-home.component.scss']
 })
 export class InstitutionHomeComponent implements OnInit {
-  institutions: Institution[] = new Array<Institution>();
-  institution: Institution = new Institution('', '', '');
 
   displayedColumns: string[] = ['position', 'name', 'points'];
   dataSource = ELEMENT_DATA;
 
-  constructor(private institutionService: InstitutionService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.institutionService.getAll().subscribe((institutions: Institution[]) => {
-      console.log(institutions);
-      this.institutions = institutions;
-    });
-  }
+  ngOnInit(): void {}
 
 }

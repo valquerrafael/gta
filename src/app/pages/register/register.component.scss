@@ -37,8 +37,9 @@
 
 mat-card {
   width: 300px;
-  height: 450px;
+  height: 500px;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 .radioButtons {
@@ -54,15 +55,9 @@ mat-radio-button {
   margin: 5px;
 }
 
-.formInputs {
-  margin-top: 30px;
-}
-
-
 mat-form-field {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding-bottom: 0px !important;
 }
@@ -79,15 +74,4 @@ mat-form-field {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin-bottom: 10px ;
-}
-
-mat-card a {
-  font-size: 0.7rem;
-  font-weight: 300;
-  margin-top: 10px;
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

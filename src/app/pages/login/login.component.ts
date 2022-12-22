@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InstitutionService } from 'src/app/shared/services/institution.service';
 import { StudentService } from 'src/app/shared/services/student.service';
 import { TeacherService } from 'src/app/shared/services/teacher.service';
 
@@ -9,7 +8,7 @@ import { TeacherService } from 'src/app/shared/services/teacher.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  entities = ['Student', 'Teacher', 'Institution'];
+  entities = ['Student', 'Teacher'];
   selectedEntity = '';
 
   loginForm = '';
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit {
 
   possibleLoginNames = {
     'student': 'CPF',
-    'teacher': 'CPF',
-    'institution': 'CNPJ'
+    'teacher': 'CPF'
   };
   loginName = '';
 
@@ -31,21 +29,20 @@ export class LoginComponent implements OnInit {
   private entityService = {
     'student': this.studentService,
     'teacher': this.teacherService,
-    'institution': this.institutionService
   };
 
   constructor(
-    private institutionService: InstitutionService,
     private teacherService: TeacherService,
     private studentService: StudentService,
   ) { }
 
   ngOnInit(): void {
     this.title = this.possibleTitles.login;
-    this.loginName = 'login';
+    this.loginName = 'CPF';
   }
 
   login() {
+
     console.log('login', this.selectedEntity, this.loginForm, this.password);
     this.entityService[this.selectedEntity].login(this.loginForm, this.password);
   }
@@ -58,4 +55,6 @@ export class LoginComponent implements OnInit {
   changeToRegister() {
     console.log('change to register', this.selectedEntity);
   }
+  
+
 }
