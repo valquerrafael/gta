@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StudentService } from 'src/app/shared/services/student.service';
 import { TeacherService } from 'src/app/shared/services/teacher.service';
 
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private teacherService: TeacherService,
     private studentService: StudentService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,10 @@ export class LoginComponent implements OnInit {
 
   changeToRegister() {
     console.log('change to register', this.selectedEntity);
+  }
+
+  navigateToRegister() {
+    this.router.navigate([`/register/${this.selectedEntity}`]);
   }
   
 

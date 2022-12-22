@@ -38,14 +38,14 @@ export class EmptyComponent implements OnInit {
   };
 
   constructor(
-    //private router: Router
+    private router: Router,
     private studentService: StudentService,
     private teacherService: TeacherService,
     private trailService: TrailService,
   ) { }
 
   ngOnInit(): void {
-   // this.router.navigate([(localStorage.getItem('lastEndpoint') || '/institution-list')]);
+    this.router.navigate([(localStorage.getItem('lastEndpoint') || '/login')]);
   }
 
   login() {

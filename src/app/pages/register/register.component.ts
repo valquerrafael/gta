@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Student } from 'src/app/shared/model/Student';
 import { Teacher } from 'src/app/shared/model/Teacher';
 import { Trail } from 'src/app/shared/model/Trail';
@@ -65,12 +66,28 @@ export class RegisterComponent implements OnInit {
     private teacherService: TeacherService,
     private studentService: StudentService,
     private _snackBar: MatSnackBar,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.title = this.possibleTitles.register;
     this.loginName = 'CPF';
     this.selectedEntity = 'teacher';
+  }
+
+  getTeacherByCpf() {
+    if (this.teacher.cpf)
+      this.teacherService.getTeacherByCpf(this.teacher.cpf).subscribe((teacher) => {
+        this.teacher = teacher;
+      });
+  }
+
+  getStudentByCpf() {
+    if (this.student.cpf)
+      this.studentService.getStudentByCpf(this.student.cpf).subscribe((student) => {
+        console.log(student);
+        this.student = student;
+      });
   }
 
   changeEntity(entity: string) {
@@ -92,7 +109,12 @@ export class RegisterComponent implements OnInit {
       duration: this.durationInSeconds * 1000,
     });
   }
- 
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+
   register() {
     const entity = this.selectedEntity;
     const cpf = this.loginForm;
@@ -103,6 +125,7 @@ export class RegisterComponent implements OnInit {
       this.openSnackBarEmptyFields();
       return;
     }
+
     
     if (entity === 'student') {
       console.log('student')
@@ -114,6 +137,7 @@ export class RegisterComponent implements OnInit {
         this.student = student;
       }),
       this.openSnackBarRegister();
+      this.navigateToLogin();
     } else if (entity === 'teacher') {
       console.log('teacher')
       this.teacherService.createTeacher({
@@ -123,6 +147,8 @@ export class RegisterComponent implements OnInit {
       }).subscribe((teacher) => {
         this.teacher = teacher;
       })
+      this.openSnackBarRegister();
+      this.navigateToLogin();
     }
   }
 
