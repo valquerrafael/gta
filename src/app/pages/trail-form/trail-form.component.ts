@@ -28,6 +28,8 @@ export class TrailFormComponent implements OnInit {
     students: []
   }
 
+  lastEndpoint = '';
+
   constructor(
     private teacherService: TeacherService,
     private activatedRoute: ActivatedRoute,
@@ -36,13 +38,11 @@ export class TrailFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.teacherService
-          .getTeacherById(params['id'])
-          .subscribe(teacher => this.teacher = teacher);
-      }
-    });
+    this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.teacherService
+      .getTeacherById(this.activatedRoute.snapshot.params['id'])
+      .subscribe(teacher => this.teacher = teacher);
   }
 
   openSnackBarCreatedTrail() {
@@ -52,13 +52,10 @@ export class TrailFormComponent implements OnInit {
   }
 
   createTrail() {
-    console.log('createTrail');
-    console.log(`teacher before: ${JSON.stringify(this.teacher)}`)
     if (this.teacher.teacherId) {
       this.teacherService
         .createTrail(this.teacher.teacherId, this.trail)
         .subscribe(teacher => {
-          console.log(`teacher after: ${JSON.stringify(teacher)}`)
           this.teacher = teacher;
           this.openSnackBarCreatedTrail();
           this.navigateToTeacherHome();
@@ -71,6 +68,8 @@ export class TrailFormComponent implements OnInit {
   }
 
   navigateToTeacherHome() {
-    this.router.navigate([`/teacher/home/${this.teacher.teacherId}`]);
+    this.lastEndpoint = `/teacher/home/${this.teacher.teacherId}`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
   }
 }

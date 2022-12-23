@@ -4,6 +4,7 @@ import { Trail } from 'src/app/shared/model/Trail';
 import { TrailService } from '../../shared/services/trail.service';
 import { TrailContent } from '../../shared/model/TrailContent';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StudentService } from 'src/app/shared/services/student.service';
 
 @Component({
   selector: 'app-trail-page',
@@ -19,22 +20,26 @@ export class TrailPageComponent implements OnInit {
     score: 0,
     trailId: 0
   };
+  showScoreButton = false;
+  entityId = 0;
 
   constructor(
     private trailService: TrailService,
+    private studentService: StudentService,
     private activatedRoute: ActivatedRoute,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.trailService
-        .getTrailById(params['id'])
-        .subscribe(trail => {
-          this.trail = trail;
-          this.content.trailId = trail.trailId;
-        });
-    });
+    (localStorage.getItem('entity') === 'student') ? this.showScoreButton = true : this.showScoreButton = false;
+    const params = this.activatedRoute.snapshot.params;
+    this.trailService
+      .getTrailById(params['trailId'])
+      .subscribe(trail => {
+        this.trail = trail;
+        this.content.trailId = trail.trailId;
+      });
+    (params['studentId']) ? this.entityId = params['studentId'] : this.entityId = params['teacherId'];
   }
 
   openSnackBarCreatedContent() {
@@ -45,6 +50,12 @@ export class TrailPageComponent implements OnInit {
 
   openSnackBarDeletedContent() {
     this._snackBar.open('Content deleted successfully', 'Close', {
+      duration: 5000,
+    });
+  }
+
+  openSnackBarAddedScore() {
+    this._snackBar.open('Content finished successfully', 'Close', {
       duration: 5000,
     });
   }
@@ -69,5 +80,9 @@ export class TrailPageComponent implements OnInit {
           this.openSnackBarDeletedContent();
       });
     }
+  }
+
+  addScore(content: TrailContent) {
+    this.studentService.addScore(this.entityId, content).subscribe();
   }
 }

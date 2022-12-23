@@ -34,11 +34,7 @@ const routes: Routes = [
     component: TrailFormComponent
   },
   {
-    path: 'student/:id/trail/:id',
-    component: TrailPageComponent
-  },
-  {
-    path: 'teacher/:id/trail/:id',
+    path: 'trail/:trailId',
     component: TrailPageComponent
   }
 ]

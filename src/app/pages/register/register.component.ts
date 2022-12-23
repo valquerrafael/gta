@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/shared/model/Student';
 import { Teacher } from 'src/app/shared/model/Teacher';
 import { Trail } from 'src/app/shared/model/Trail';
@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   entities = ['Student', 'Teacher'];
   selectedEntity = '';
 
+  lastEndpoint = '';
+
   loginForm = '';
   password = '';
   name = '';
@@ -25,11 +27,14 @@ export class RegisterComponent implements OnInit {
   constructor(
     private teacherService: TeacherService,
     private studentService: StudentService,
+    private activatedRoute: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
     this.selectedEntity = 'teacher';
   }
 
@@ -38,7 +43,7 @@ export class RegisterComponent implements OnInit {
   }
   
   openSnackBarRegister() {
-    this._snackBar.open('You have been registered!', 'Close', {
+    this._snackBar.open('You have been registered successfully', 'Close', {
       duration: this.durationInSeconds * 1000,
     });
   }
@@ -50,13 +55,15 @@ export class RegisterComponent implements OnInit {
   }
 
   openSnackBarFailedRegister() {
-    this._snackBar.open('Registration failed! CPF already exists', 'Close', {
+    this._snackBar.open('Registration failed! CPF already in use', 'Close', {
       duration: this.durationInSeconds * 1000,
     });
   }
 
   navigateToLogin() {
-    this.router.navigate(['/login']);
+    this.lastEndpoint = '/login';
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
   }
 
   register() {

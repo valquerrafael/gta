@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/shared/model/Student';
 import { Teacher } from 'src/app/shared/model/Teacher';
 import { StudentService } from 'src/app/shared/services/student.service';
@@ -16,17 +16,22 @@ export class LoginComponent implements OnInit {
   selectedEntity = '';
   durationInSeconds = 5;
 
+  lastEndpoint = ''
+
   loginForm = '';
   password = '';
 
   constructor(
     private teacherService: TeacherService,
     private studentService: StudentService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
     this.selectedEntity = 'teacher';
   }
 
@@ -37,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    localStorage.setItem('entity', this.selectedEntity);
     if (this.selectedEntity === 'student') {
       this.studentService.login({
         "cpf": this.loginForm,
@@ -48,7 +54,9 @@ export class LoginComponent implements OnInit {
           student.cpf === this.loginForm &&
           student.password === this.password
         ) {
-          this.router.navigate([`student/home/${student.studentId}`]);
+          this.lastEndpoint = `student/home/${student.studentId}`;
+          localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          this.router.navigate([this.lastEndpoint]);
           return;
         } else {
           this.openSnackBarFailedLogin()
@@ -65,7 +73,9 @@ export class LoginComponent implements OnInit {
           teacher.cpf === this.loginForm &&
           teacher.password === this.password
         ) {
-          this.router.navigate([`teacher/home/${teacher.teacherId}`]);
+          this.lastEndpoint = `teacher/home/${teacher.teacherId}`;
+          localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          this.router.navigate([this.lastEndpoint]);
           return;
         } else {
           this.openSnackBarFailedLogin()
@@ -79,6 +89,8 @@ export class LoginComponent implements OnInit {
   }
 
   navigateToRegister() {
-    this.router.navigate([`/register`]);
+    this.lastEndpoint = '/register';
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
   }
 }

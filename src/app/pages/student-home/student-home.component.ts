@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Student } from 'src/app/shared/model/Student';
 import { Trail } from 'src/app/shared/model/Trail';
 import { StudentService } from 'src/app/shared/services/student.service';
-import { DialogDeleteStudentComponent } from '../util/dialog-delete-student/dialog-delete-student.component';
 
 @Component({
   selector: 'app-student-home',
@@ -22,6 +21,8 @@ export class StudentHomeComponent implements OnInit {
     trails: []
   };
 
+  lastEndpoint = '';
+
   trailsSize = 0;
 
   trails = new Array<Trail>;
@@ -35,15 +36,17 @@ export class StudentHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.studentService.getStudentById(params['id']).subscribe(student => {
+    this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.studentService
+      .getStudentById(this.activatedRoute.snapshot.params['id'])
+      .subscribe(student => {
         if (student)  {
           this.student = student;
           this.incrementTrailsSize();
           this.getTrails();
         }
       });
-    });
   }
 
   openSnackBarUpdatedStudent() {
@@ -66,7 +69,6 @@ export class StudentHomeComponent implements OnInit {
   }
 
   updateStudent() {
-    console.log('updateStudent');
     if (this.student.studentId) {
       const newPassword = prompt("New Password: ");
       if (newPassword) {
@@ -82,15 +84,14 @@ export class StudentHomeComponent implements OnInit {
   }
 
   deleteStudent() {
-    console.log('deleteStudent');
     if (this.student.studentId) {
       this.studentService
         .deleteStudent(this.student.studentId)
-        .subscribe(object => this.router.navigate(['/login']));
+        .subscribe(object => {
+          this.lastEndpoint = '/login';
+          localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          this.router.navigate([this.lastEndpoint]);
+        });
     }
   }
-
-  // openDeleteDialog() {
-  //   const dialogRef = this.dialog.open(DialogDeleteStudentComponent);
-  // }
 }

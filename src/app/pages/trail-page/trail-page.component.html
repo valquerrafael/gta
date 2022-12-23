@@ -37,6 +37,9 @@
       <button mat-icon-button (click)="deleteContent(content)" aria-label="Example icon button with a delete icon">
         <mat-icon>delete</mat-icon>
       </button>
+      <button mat-icon-button (click)="addScore(content)" *ngIf="showScoreButton">
+        <mat-icon>check</mat-icon>
+      </button>
     </div>
   </mat-card>
 </div>

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Teacher } from 'src/app/shared/model/Teacher';
 import { Trail } from 'src/app/shared/model/Trail';
 import { TeacherService } from 'src/app/shared/services/teacher.service';
-import { TrailService } from 'src/app/shared/services/trail.service';
 
 @Component({
   selector: 'app-teacher-home',
@@ -21,29 +19,31 @@ export class TeacherHomeComponent implements OnInit {
     trails: []
   };
 
+  lastEndpoint = ''
+
   trailsSize = 0;
 
   trails = new Array<Trail>;
 
   constructor(
     private teacherService: TeacherService,
-    private trailService: TrailService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.teacherService.getTeacherById(params['id']).subscribe(teacher => {
+    this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.teacherService
+      .getTeacherById(this.activatedRoute.snapshot.params['id'])
+      .subscribe(teacher => {
         if (teacher)  {
           this.teacher = teacher;
           this.incrementTrailsSize();
           this.getTrails();
         }
       });
-    });
   }
 
   openSnackBarUpdatedTeacher() {
@@ -78,7 +78,6 @@ export class TeacherHomeComponent implements OnInit {
   }
 
   updateTeacher() {
-    console.log('updateTeacher');
     if (this.teacher.teacherId) {
       const newPassword = prompt("New Password: ");
       if (newPassword) {
@@ -94,16 +93,21 @@ export class TeacherHomeComponent implements OnInit {
   }
 
   deleteTeacher() {
-    console.log('deleteTeacher');
     if (this.teacher.teacherId) {
       this.teacherService
         .deleteTeacher(this.teacher.teacherId)
-        .subscribe(object => this.router.navigate(['/login']));
+        .subscribe(object => {
+          this.lastEndpoint = '/login';
+          localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          this.router.navigate([this.lastEndpoint]);
+        });
     }
   }
 
   navigateToTrailForm() {
-    this.router.navigate([`/teacher/home/${this.teacher.teacherId}/create-trail`]);
+    this.lastEndpoint = `/teacher/home/${this.teacher.teacherId}/create-trail`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
   }
 
   deleteTrail(trail: Trail) {
@@ -122,6 +126,8 @@ export class TeacherHomeComponent implements OnInit {
   }
 
   navigateToTrailPage(trail: Trail) {
-    this.router.navigate([`/trail/${trail.trailId}`]);
+    this.lastEndpoint = `/trail/${trail.trailId}`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
   }
 }
