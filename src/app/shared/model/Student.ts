@@ -1,12 +1,24 @@
 export class Student {
-  id!: number;
-  name: string;
-  email: string;
-  registration: string;
+  studentId?: number;
+  cpf?: string;
+  name?: string;
+  password?: string;
+  score?: number;
+  trails?: number[];
 
-  constructor(name: string, email: string, registration: string) {
+  constructor(
+    studentId: number,
+    cpf: string,
+    name: string,
+    password: string,
+    score: number,
+    trails: number[]
+  ) {
+    this.studentId = studentId;
+    this.cpf = cpf;
     this.name = name;
-    this.email = email;
-    this.registration = registration;
+    this.password = password;
+    this.score = score;
+    this.trails = trails;
   }
 }

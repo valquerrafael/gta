@@ -1,12 +1,21 @@
 export class Teacher {
-  id!: number;
-  name: string | undefined;
-  email: string | undefined;
-  registration: string | undefined;
+  teacherId?: number;
+  cpf?: string;
+  name?: string;
+  password?: string;
+  trails?: number[];
 
-  constructor(name?: string, email?: string, registration?: string) {
+  constructor(
+    teacherId: number,
+    cpf: string,
+    name: string,
+    password: string,
+    trails: number[]
+  ) {
+    this.teacherId = teacherId;
+    this.cpf = cpf;
     this.name = name;
-    this.email = email;
-    this.registration = registration;
+    this.password = password;
+    this.trails = trails;
   }
 }

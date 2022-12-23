@@ -1,0 +1,54 @@
+<div class="topbar">
+  <div class="text">
+    <h1>{{trail.name}}</h1>
+    <h4>{{trail.description}}</h4>
+  </div>
+  <div class="button">
+    <button mat-icon-button (click)="navigateTo()" aria-label="Example icon button with a open in new tab icon">
+      <mat-icon>home</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="showContentForm">
+  <div class="formInputs">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Content Name</mat-label>
+        <input [(ngModel)]="content.name" text matInput placeholder="Content Name">
+      </mat-form-field>
+    </p>
+    <p>  
+      <mat-form-field appearance="outline">
+        <mat-label>Score</mat-label>
+        <input [(ngModel)]="content.score" matInput placeholder="Score">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Content</mat-label>
+        <textarea [(ngModel)]="content.content" matInput></textarea>
+      </mat-form-field>
+    </p>
+    <div>
+      <button mat-button color="primary" (click)="createContent()">Create Content</button>
+    </div>
+  </div>
+</div>
+
+<div class="contents">
+  <mat-card *ngFor="let content of trail.contents">
+    <mat-card-content>{{content.name}}</mat-card-content>
+    <mat-card-content>{{content.content}}</mat-card-content>
+    <mat-card-content>{{content.score}}</mat-card-content>
+    <div class="buttons">
+      <button mat-icon-button (click)="deleteContent(content)" *ngIf="showDeleteButton">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="addScore(content)">
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</div>

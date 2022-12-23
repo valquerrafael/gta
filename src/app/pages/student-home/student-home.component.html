@@ -1,0 +1,79 @@
+<div>
+  <p>
+    <mat-toolbar class="topbar">
+      <div class="text">
+        <span>Gestão de Trilha de Aprendizagem</span>
+        <div class="divider"></div>
+        <span>Home - Student</span>
+      </div>
+      <div class="button">
+        <button mat-icon-button (click)="navigateToLogin()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>output</mat-icon>
+        </button>
+        <button mat-icon-button (click)="navigateToInstitutionHome()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>domain</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar> 
+  </p>
+</div>
+
+<div>
+  <mat-card class="institutionProfile">
+    <div class="profileHeader">
+      <div class="title">
+        <mat-icon aria-label="Example home icon" fontIcon="school"></mat-icon>
+        <mat-card-title>Student - {{student.name}}</mat-card-title>
+      </div>
+      <div class="buttons">
+        <button mat-icon-button (click)="deleteStudent()" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="updateStudent()" aria-label="Example icon button with a delete icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="dataSection">
+      <div class="profileData1">
+        <div class="divider"></div>
+        <div class="id">
+          <mat-card-subtitle>ID</mat-card-subtitle>
+          <p>{{student.studentId}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="cnpj">
+          <mat-card-subtitle>CPF</mat-card-subtitle>
+          <p>{{student.cpf}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="teachers">
+          <mat-card-subtitle>Score</mat-card-subtitle>
+          <p>{{student.score}}</p>
+        </div>
+      </div>
+      <div class="profileData2">
+        <div class="divider"></div>
+        <div class="trails">
+          <mat-card-subtitle>Trails</mat-card-subtitle>
+          <p>{{trailsSize}}</p>
+        </div>
+      </div>
+    </div>
+    <mat-card class="bar"></mat-card>
+  </mat-card>
+</div>
+
+<div class="listTrails">
+  <div>
+    <mat-card *ngFor="let trail of trails">
+      <mat-card-content>{{trail.name}}</mat-card-content>
+      <mat-card-content>{{trail.description}}</mat-card-content>
+      <div class="buttons">
+        <button mat-icon-button (click)="navigateToTrailPage(trail)" aria-label="Example icon button with a delete icon">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

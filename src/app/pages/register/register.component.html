@@ -1,0 +1,47 @@
+<div class="homePage">
+  <div class="titleHome">
+    <img src="../../assets/Research paper-pana.svg" alt="GTA">
+    
+  </div>
+  
+  <div class="loginForm">
+    <h1>Gestão de Trilha de Aprendizagem</h1>
+    <mat-card>
+      <mat-card-title>Register</mat-card-title>
+
+      <div class="radioButtons">
+        <mat-radio-group aria-label="Select an option" color="primary">
+          <mat-radio-button *ngFor="let entity of entities" [value]="entity"
+            (change)="changeEntity(entity)" checked>{{entity}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="formInputs">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Insert your CPF</mat-label>
+            <input text [(ngModel)]="loginForm" matInput placeholder="CPF" required>
+            <mat-hint>cannot be empty</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Insert your name</mat-label>
+            <input [(ngModel)]="name" matInput placeholder="Name" required>
+            <mat-hint>cannot be empty</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>  
+          <mat-form-field appearance="outline">
+            <mat-label>Insert your password</mat-label>
+            <input [(ngModel)]="password" matInput placeholder="Password" required>
+            <mat-hint>cannot be empty</mat-hint>
+          </mat-form-field>
+        </p>
+      </div>
+      <div class="formButton">
+        <button mat-flat-button color="primary" (click)="register()" >Register</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -1,33 +1,64 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Student } from 'src/app/shared/model/Student';
+import { HttpClient } from '@angular/common/http';
+import { Student } from '../model/Student';
+import { TrailContent } from '../model/TrailContent';
+import { Trail } from '../model/Trail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  private URL_API = 'http://localhost:3000/students';
+
+  private API_URL = 'http://localhost:8080/api/students';
 
   constructor(private httpClient: HttpClient) {}
 
-  insertStudent(student: Student): Observable<Student> {
-    return this.httpClient.post<Student>(this.URL_API, student);
+  login(student: Student): Observable<Student> {
+    return this.httpClient.post<Student>(`${this.API_URL}/login`, student);
   }
 
-  getStudent(id: number): Observable<Student> {
-    return this.httpClient.get<Student>(`${this.URL_API}/${id}`);
+  createStudent(student: Student): Observable<Student> {
+    return this.httpClient.post<Student>(this.API_URL, student);
   }
 
-  updateStudent(id: number, student: Student): Observable<Student> {
-    return this.httpClient.put<Student>(`${this.URL_API}/${id}`, student);
+  getStudentById(id: number): Observable<Student> {
+    return this.httpClient.get<Student>(`${this.API_URL}/${id}`);
+  }
+
+  changePassword(id: number, student: Student): Observable<Student> {
+    return this.httpClient.put<Student>(`${this.API_URL}/${id}/change-password`, student);
+  }
+
+  addScore(id: number, trailContent: TrailContent): Observable<Student> {
+    return this.httpClient.put<Student>(`${this.API_URL}/${id}/add-score`, trailContent);
+  }
+
+  getStudentByCpf(cpf: string): Observable<Student> {
+    return this.httpClient.get<Student>(`${this.API_URL}/get-by-cpf/${cpf}`);
   }
 
   deleteStudent(id: number): Observable<object> {
-    return this.httpClient.delete(`${this.URL_API}/${id}`);
+    return this.httpClient.delete(`${this.API_URL}/${id}`);
   }
 
-  getAllStudents(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(this.URL_API);
+  subscribeTrail(id: number, trail: Trail): Observable<Student> {
+    return this.httpClient.put<Student>(`${this.API_URL}/${id}/subscribe-trail`, trail);
+  }
+
+  unsubscribeTrail(id: number, trail: Trail): Observable<Student> {
+    return this.httpClient.put<Student>(`${this.API_URL}/${id}/unsubscribe-trail`, trail);
+  }
+
+  getTrails(id: number): Observable<Trail[]> {
+    return this.httpClient.get<Trail[]>(`${this.API_URL}/${id}/trails`);
+  }
+
+  getRanking(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.API_URL}/ranking`);
+  }
+
+  getAll(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.API_URL}/get-all`);
   }
 }

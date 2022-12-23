@@ -1,20 +1,41 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TeacherListComponent } from './teacher/teacher-list/teacher-list.component';
-import { TeacherRegisterComponent } from './teacher/teacher-register/teacher-register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { InstitutionHomeComponent } from './pages/institution-home/institution-home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { StudentHomeComponent } from './pages/student-home/student-home.component';
+import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
+import { TrailFormComponent } from './pages/trail-form/trail-form.component';
+import { TrailPageComponent } from './pages/trail-page/trail-page.component';
 
 const routes: Routes = [
   {
-    path: 'teacher-list',
-    component: TeacherListComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: 'teacher-register',
-    component: TeacherRegisterComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
-    path: 'teacher-update/:id',
-    component: TeacherRegisterComponent
+    path: 'student/home/:id',
+    component: StudentHomeComponent
+  },
+  {
+    path: 'teacher/home/:id',
+    component: TeacherHomeComponent
+  },
+  {
+    path: 'teacher/home/:id/create-trail',
+    component: TrailFormComponent
+  },
+  {
+    path: 'trail/:trailId',
+    component: TrailPageComponent
+  },
+  {
+    path: 'institution/home/:id',
+    component: InstitutionHomeComponent
   }
 ]
 

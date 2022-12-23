@@ -1,0 +1,78 @@
+<div>
+  <p>
+    <mat-toolbar class="topbar">
+      <div class="text">
+        <span>Gestão de Trilha de Aprendizagem</span>
+        <div class="divider"></div>
+        <span>Home - Institution IFPB</span>
+      </div>
+      <div class="button">
+        <button mat-icon-button (click)="navigateTo()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar> 
+  </p>
+</div>
+
+<div>
+  <mat-card class="institutionProfile">
+    <div class="profileHeader">
+      <mat-icon aria-label="Example home icon" fontIcon="school"></mat-icon>
+      <mat-card-title>Instituto Federal da Paraíba - IFPB</mat-card-title>
+    </div>
+    <div class="dataSection">
+      <div class="profileData1">
+        <div class="divider"></div>
+        <div class="id">
+          <mat-card-subtitle>ID</mat-card-subtitle>
+          <p>1</p>
+        </div>
+        <div class="divider"></div>
+        <div class="cnpj">
+          <mat-card-subtitle>CNPJ</mat-card-subtitle>
+          <p>00.000.000/0000-00</p>
+        </div>
+        <div class="divider"></div>
+        <div class="teachers">
+          <mat-card-subtitle>Teachers</mat-card-subtitle>
+          <p>{{teachers.length}}</p>
+        </div>
+      </div>
+      <div class="profileData2">
+        <div class="divider"></div>
+        <div class="students">
+          <mat-card-subtitle>Students</mat-card-subtitle>
+          <p>{{students.length}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="trails">
+          <mat-card-subtitle>Trails</mat-card-subtitle>
+          <p>{{trails.length}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="empty"></div>
+      </div>
+    </div>
+    <mat-card class="bar"></mat-card>
+  </mat-card>
+  <mat-card class="institutionRanking">
+    <div class="profileHeader">
+      <mat-icon aria-label="Example home icon" fontIcon="insights"></mat-icon>
+      <mat-card-title>Trails List - IFPB</mat-card-title>
+    </div>
+    <div class="listTrails">
+      <mat-card *ngFor="let trail of trails" (click)="navigateTo(trail)">
+        <mat-card-content>
+          <p>{{trail.name}}</p>
+        </mat-card-content>
+        <mat-card-content>
+          <p>{{trail.description}}</p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" *ngIf="showSubscribeButton">
+          <button (click)="subscribe(trail)" mat-button>Subscribe</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

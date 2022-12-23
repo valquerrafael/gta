@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.divider {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-left: 2px solid #dd6e42;
+  height: 25px !important;
+  text-align: center;
+}
+
+.topbar {
+  display: flex;
+}
+
+.topbar .text {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  width: 90%;
+}
+
+.institutionProfile {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: none;
+  border: 2px solid #dd6e42;
+  border-radius: 30px;
+}
+
+.profileHeader {
+  display: flex;
+  width: 100%;
+}
+
+.profileHeader mat-icon {
+  margin-right: 10px;
+}
+
+.dataSection {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.profileData1 {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.profileData2 {
+  display: flex;
+  width: 100%;
+}
+
+.id {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.id mat-card-subtitle {
+  margin: 0 !important;
+}
+
+.id p {
+  margin-left: 10%;
+  font-size: 1.2em;
+}
+
+.cnpj {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.cnpj mat-card-subtitle {
+  margin: 0 !important;
+}
+
+.cnpj p {
+  font-size: 1.2em;
+}
+
+.teachers {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.teachers mat-card-subtitle {
+  margin: 0 !important;
+}
+
+.teachers p {
+  margin-left: 10%;
+  font-size: 1.2em;
+}
+
+.students {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.students mat-card-subtitle {
+  margin: 0 !important;
+}
+
+.students p {
+  margin-left: 10%;
+  font-size: 1.2em;
+}
+
+.trails {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.trails mat-card-subtitle {
+  margin: 0 !important;
+}
+
+.trails p {
+  margin-left: 10%;
+  font-size: 1.2em;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.bar {
+  box-shadow: none;
+  background: #dd6e42;
+  border-radius: 30px;
+}
+
+.institutionRanking {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: none;
+  border: 2px solid #dd6e42;
+  border-radius: 30px;
+}
+
+.dataSection2 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  justify-content: space-around !important;
+}
+
+.listTrails {
+  padding-bottom: 20px;
+}
+
+.listTrails .buttons {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.listTrails mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: none;
+  border: 2px solid #dd6e42;
+  border-radius: 30px;
+}
