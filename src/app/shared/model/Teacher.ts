@@ -3,19 +3,19 @@ export class Teacher {
   cpf?: string;
   name?: string;
   password?: string;
-  trailsIds?: number[];
+  trails?: number[];
 
   constructor(
     teacherId: number,
     cpf: string,
     name: string,
     password: string,
-    trailsIds: number[]
+    trails: number[]
   ) {
     this.teacherId = teacherId;
     this.cpf = cpf;
     this.name = name;
     this.password = password;
-    this.trailsIds = trailsIds;
+    this.trails = trails;
   }
 }

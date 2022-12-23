@@ -7,7 +7,7 @@
   <div class="loginForm">
     <h1>Gestão de Trilha de Aprendizagem</h1>
     <mat-card>
-      <mat-card-title>{{possibleTitles.login}}</mat-card-title>
+      <mat-card-title>Login</mat-card-title>
 
       <div class="radioButtons">
         <mat-radio-group aria-label="Select an option" color="primary">
@@ -19,16 +19,10 @@
       <div class="formInputs">
         <p>
           <mat-form-field appearance="outline">
-            <mat-label>Insert your {{loginName}}</mat-label>
-            <input text [(ngModel)]="loginForm" matInput placeholder="{{loginName}}">
+            <mat-label>Insert your CPF</mat-label>
+            <input text [(ngModel)]="loginForm" matInput placeholder="CPF">
           </mat-form-field>
         </p>
-        <!-- <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Insert your login</mat-label>
-            <input [(ngModel)]="loginForm" matInput placeholder="Login">
-          </mat-form-field>
-        </p> -->
         <p>  
           <mat-form-field appearance="outline">
             <mat-label>Insert your password</mat-label>

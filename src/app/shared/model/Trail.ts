@@ -5,8 +5,8 @@ export class Trail {
   name?: string;
   description?: string;
   contents?: TrailContent[];
-  teacherId?: number;
-  studentsIds?: number[];
+  teacher?: number;
+  students?: number[];
 
   constructor(
     trailId: number,
@@ -20,7 +20,7 @@ export class Trail {
     this.name = name;
     this.description = description;
     this.contents = contents;
-    this.teacherId = teacherId;
-    this.studentsIds = studentsIds;
+    this.teacher = teacherId;
+    this.students = studentsIds;
   }
 }

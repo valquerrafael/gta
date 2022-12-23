@@ -45,7 +45,7 @@ export class TeacherService {
     return this.httpClient.put<Teacher>(`${this.API_URL}/${id}/delete-trail`, trail);
   }
 
-  getTrails(id: number) {
-    return this.httpClient.get<Teacher>(`${this.API_URL}/${id}/trails`);
+  getTrails(id: number): Observable<Trail[]> {
+    return this.httpClient.get<Trail[]>(`${this.API_URL}/${id}/trails`);
   }
 }

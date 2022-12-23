@@ -1,0 +1,24 @@
+<div class="trailForm">
+  <h1>Cadastro de Trilha de Aprendizagem</h1>
+  <mat-card>
+    <div class="formInputs">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Trail Name</mat-label>
+          <input [(ngModel)]="trail.name" matInput placeholder="Trail name">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Trail Description</mat-label>
+          <input [(ngModel)]="trail.description" matInput placeholder="Trail description">
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="formButtons">
+      <button mat-raised-button (click)="createTrail()"  color="primary">Save</button>
+      <button mat-raised-button (click)="navigateToTeacherHome()" color="warn">Cancel</button>
+    </div>
+  </mat-card>
+
+</div>

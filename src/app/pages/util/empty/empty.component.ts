@@ -19,22 +19,22 @@ export class EmptyComponent implements OnInit {
     name: '',
     password: '',
     score: 0,
-    trailsIds: []
+    trails: []
   };
   teacher: Teacher = {
     teacherId: 0,
     cpf: '',
     name: '',
     password: '',
-    trailsIds: []
+    trails: []
   };
   trail: Trail = {
     trailId: 0,
     name: '',
     description: '',
     contents: [],
-    teacherId: 0,
-    studentsIds: []
+    teacher: 0,
+    students: []
   };
 
   constructor(

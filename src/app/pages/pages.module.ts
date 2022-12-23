@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -16,24 +17,35 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { StudentHomeComponent } from './student-home/student-home.component';
+import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
+import { DialogDeleteStudentComponent } from './util/dialog-delete-student/dialog-delete-student.component';
+import { TrailFormComponent } from './trail-form/trail-form.component';
+import { TrailPageComponent } from './trail-page/trail-page.component';
 
 @NgModule({
   declarations: [
     EmptyComponent,
     InstitutionHomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentHomeComponent,
+    TeacherHomeComponent,
+    DialogDeleteStudentComponent,
+    TrailFormComponent,
+    TrailPageComponent    
   ],
-  imports: [
+  imports: [    
     CommonModule,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatToolbarModule,
+    MatDialogModule,
     MatIconModule,
     MatRadioModule,
     MatButtonModule,
-    MatToolbarModule,
     MatTableModule,
     MatSnackBarModule,
     RouterModule,
@@ -43,7 +55,11 @@ import { RegisterComponent } from './register/register.component';
     EmptyComponent,
     InstitutionHomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentHomeComponent,
+    TeacherHomeComponent,
+    DialogDeleteStudentComponent,
+    TrailFormComponent,
+    TrailPageComponent
   ]
-})
-export class PagesModule { }
+}) export class PagesModule { }

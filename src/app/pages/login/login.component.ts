@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Student } from 'src/app/shared/model/Student';
+import { Teacher } from 'src/app/shared/model/Teacher';
 import { StudentService } from 'src/app/shared/services/student.service';
 import { TeacherService } from 'src/app/shared/services/teacher.service';
 
@@ -11,56 +14,71 @@ import { TeacherService } from 'src/app/shared/services/teacher.service';
 export class LoginComponent implements OnInit {
   entities = ['Student', 'Teacher'];
   selectedEntity = '';
+  durationInSeconds = 5;
 
   loginForm = '';
   password = '';
-
-  possibleLoginNames = {
-    'student': 'CPF',
-    'teacher': 'CPF'
-  };
-  loginName = '';
-
-  possibleTitles = {
-    login: 'Login',
-    register: 'Register'
-  };
-  title = '';
-  
-  private entityService = {
-    'student': this.studentService,
-    'teacher': this.teacherService,
-  };
 
   constructor(
     private teacherService: TeacherService,
     private studentService: StudentService,
     private router: Router,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
-    this.title = this.possibleTitles.login;
-    this.loginName = 'CPF';
+    this.selectedEntity = 'teacher';
+  }
+
+  openSnackBarFailedLogin() {
+    this._snackBar.open('CPF or password is incorrect', 'Close', {
+      duration: this.durationInSeconds * 1000,
+    });
   }
 
   login() {
-
-    console.log('login', this.selectedEntity, this.loginForm, this.password);
-    this.entityService[this.selectedEntity].login(this.loginForm, this.password);
+    if (this.selectedEntity === 'student') {
+      this.studentService.login({
+        "cpf": this.loginForm,
+        "password": this.password
+      }).subscribe((student: Student) => {
+        if (
+          student && student !== null && student !== undefined &&
+          student.studentId && student.studentId > 0 &&
+          student.cpf === this.loginForm &&
+          student.password === this.password
+        ) {
+          this.router.navigate([`student/home/${student.studentId}`]);
+          return;
+        } else {
+          this.openSnackBarFailedLogin()
+        }
+      });
+    } else if (this.selectedEntity === 'teacher') {
+      this.teacherService.login({
+        "cpf": this.loginForm,
+        "password": this.password
+      }).subscribe((teacher: Teacher) => {
+        if (
+          teacher &&
+          teacher.teacherId && teacher.teacherId > 0 &&
+          teacher.cpf === this.loginForm &&
+          teacher.password === this.password
+        ) {
+          this.router.navigate([`teacher/home/${teacher.teacherId}`]);
+          return;
+        } else {
+          this.openSnackBarFailedLogin()
+        }
+      });
+    }
   }
 
   changeEntity(entity: string) {
     this.selectedEntity = entity.toLowerCase();
-    this.loginName = this.possibleLoginNames[this.selectedEntity];
-  }
-
-  changeToRegister() {
-    console.log('change to register', this.selectedEntity);
   }
 
   navigateToRegister() {
-    this.router.navigate([`/register/${this.selectedEntity}`]);
+    this.router.navigate([`/register`]);
   }
-  
-
 }

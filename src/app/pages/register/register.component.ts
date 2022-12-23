@@ -16,51 +16,11 @@ export class RegisterComponent implements OnInit {
   entities = ['Student', 'Teacher'];
   selectedEntity = '';
 
-  student: Student = {
-    studentId: 0,
-    cpf: '',
-    name: '',
-    password: '',
-    score: 0,
-    trailsIds: []
-  };
-  teacher: Teacher = {
-    teacherId: 0,
-    cpf: '',
-    name: '',
-    password: '',
-    trailsIds: []
-  };
-  trail: Trail = {
-    trailId: 0,
-    name: '',
-    description: '',
-    contents: [],
-    teacherId: 0,
-    studentsIds: []
-  };
-
-
   loginForm = '';
   password = '';
   name = '';
 
-  possibleLoginNames = {
-    'student': 'CPF',
-    'teacher': 'CPF'
-  };
-  loginName = '';
-
-  possibleTitles = {
-    login: 'Login',
-    register: 'Register'
-  };
-  title = '';
-
-  private entityService = {
-    'student': this.studentService,
-    'teacher': this.teacherService,
-  };
+  durationInSeconds = 5;
 
   constructor(
     private teacherService: TeacherService,
@@ -70,33 +30,12 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.title = this.possibleTitles.register;
-    this.loginName = 'CPF';
     this.selectedEntity = 'teacher';
-  }
-
-  getTeacherByCpf() {
-    if (this.teacher.cpf)
-      this.teacherService.getTeacherByCpf(this.teacher.cpf).subscribe((teacher) => {
-        this.teacher = teacher;
-      });
-  }
-
-  getStudentByCpf() {
-    if (this.student.cpf)
-      this.studentService.getStudentByCpf(this.student.cpf).subscribe((student) => {
-        console.log(student);
-        this.student = student;
-      });
   }
 
   changeEntity(entity: string) {
     this.selectedEntity = entity.toLowerCase();
-    this.loginName = this.possibleLoginNames[this.selectedEntity];
-    console.log(this.selectedEntity);
   }
-
-  durationInSeconds = 5;
   
   openSnackBarRegister() {
     this._snackBar.open('You have been registered!', 'Close', {
@@ -110,47 +49,60 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  openSnackBarFailedRegister() {
+    this._snackBar.open('Registration failed! CPF already exists', 'Close', {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
 
-
   register() {
-    const entity = this.selectedEntity;
-    const cpf = this.loginForm;
-    const password = this.password;
-    const name = this.name;
-
-    if (cpf === '' || password === '' || name === '') {
+    if (this.loginForm === '' || this.password === '' || this.name === '') {
       this.openSnackBarEmptyFields();
       return;
     }
-
     
-    if (entity === 'student') {
-      console.log('student')
+    if (this.selectedEntity === 'student') {
       this.studentService.createStudent({
-        "cpf": cpf,
-        "name": name,
-        "password": password,
+        "cpf": this.loginForm,
+        "name": this.name,
+        "password": this.password,
       }).subscribe((student) => {
-        this.student = student;
-      }),
-      this.openSnackBarRegister();
-      this.navigateToLogin();
-    } else if (entity === 'teacher') {
-      console.log('teacher')
+        if (
+          student &&
+          student.studentId && student.studentId > 0 &&
+          student.name === this.name &&
+          student.cpf === this.loginForm &&
+          student.password === this.password
+        ) {
+          this.openSnackBarRegister();
+          this.navigateToLogin();
+        } else {
+          this.openSnackBarFailedRegister();
+        }
+      });
+    } else if (this.selectedEntity === 'teacher') {
       this.teacherService.createTeacher({
-        "cpf": cpf,
-        "name": name,
-        "password": password,
+        "cpf": this.loginForm,
+        "name": this.name,
+        "password": this.password,
       }).subscribe((teacher) => {
-        this.teacher = teacher;
-      })
-      this.openSnackBarRegister();
-      this.navigateToLogin();
+        if (
+          teacher &&
+          teacher.teacherId && teacher.teacherId > 0 &&
+          teacher.name === this.name &&
+          teacher.cpf === this.loginForm &&
+          teacher.password === this.password
+        ) {
+          this.openSnackBarRegister();
+          this.navigateToLogin();
+        } else {
+          this.openSnackBarFailedRegister();
+        }
+      });
     }
   }
-
-
 }

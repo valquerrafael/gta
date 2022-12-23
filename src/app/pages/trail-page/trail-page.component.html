@@ -1,0 +1,42 @@
+<div>
+  <h1>{{trail.name}}</h1>
+  <h5>{{trail.description}}</h5>
+</div>
+
+<div>
+  <button mat-button color="primary" (click)="createContent()">Create Content</button>
+</div>
+
+<div class="formInputs">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Content Name</mat-label>
+      <input [(ngModel)]="content.name" text matInput placeholder="Content Name">
+    </mat-form-field>
+  </p>
+  <p>  
+    <mat-form-field appearance="outline">
+      <mat-label>Score</mat-label>
+      <input [(ngModel)]="content.score" matInput placeholder="Score">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Content</mat-label>
+      <textarea [(ngModel)]="content.content" matInput></textarea>
+    </mat-form-field>
+  </p>
+</div>
+
+<div>
+  <mat-card *ngFor="let content of trail.contents">
+    <mat-card-content>{{content.name}}</mat-card-content>
+    <mat-card-content>{{content.content}}</mat-card-content>
+    <mat-card-content>{{content.score}}</mat-card-content>
+    <div class="buttons">
+      <button mat-icon-button (click)="deleteContent(content)" aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</div>
