@@ -1,9 +1,19 @@
 <div>
   <p>
     <mat-toolbar class="topbar">
-      <span>Gestão de Trilha de Aprendizagem</span>
-      <div class="divider"></div>
-      <span>Home - Student</span>
+      <div class="text">
+        <span>Gestão de Trilha de Aprendizagem</span>
+        <div class="divider"></div>
+        <span>Home - Student</span>
+      </div>
+      <div class="button">
+        <button mat-icon-button (click)="navigateToLogin()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>output</mat-icon>
+        </button>
+        <button mat-icon-button (click)="navigateToInstitutionHome()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>domain</mat-icon>
+        </button>
+      </div>
     </mat-toolbar> 
   </p>
 </div>
@@ -54,8 +64,16 @@
   </mat-card>
 </div>
 
-<div>
-  <mat-card *ngFor="let trail of trails">
-    <mat-card-content>{{trail.name}}</mat-card-content>
-  </mat-card>
+<div class="listTrails">
+  <div>
+    <mat-card *ngFor="let trail of trails">
+      <mat-card-content>{{trail.name}}</mat-card-content>
+      <mat-card-content>{{trail.description}}</mat-card-content>
+      <div class="buttons">
+        <button mat-icon-button (click)="navigateToTrailPage(trail)" aria-label="Example icon button with a delete icon">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
 </div>

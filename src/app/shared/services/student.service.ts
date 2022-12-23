@@ -57,4 +57,8 @@ export class StudentService {
   getRanking(): Observable<Student[]> {
     return this.httpClient.get<Student[]>(`${this.API_URL}/ranking`);
   }
+
+  getAll(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.API_URL}/get-all`);
+  }
 }

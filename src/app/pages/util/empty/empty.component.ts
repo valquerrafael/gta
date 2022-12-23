@@ -16,6 +16,8 @@ export class EmptyComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigate([(localStorage.getItem('lastEndpoint') || '/login')]);
+    (localStorage.getItem('lastEndpoint') === '')
+    ? this.router.navigate([('/login')])
+    : this.router.navigate([localStorage.getItem('lastEndpoint')]);
   }
 }

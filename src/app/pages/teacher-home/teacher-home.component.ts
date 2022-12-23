@@ -40,7 +40,6 @@ export class TeacherHomeComponent implements OnInit {
       .subscribe(teacher => {
         if (teacher)  {
           this.teacher = teacher;
-          this.incrementTrailsSize();
           this.getTrails();
         }
       });
@@ -64,16 +63,14 @@ export class TeacherHomeComponent implements OnInit {
     });
   }
 
-  incrementTrailsSize() {
-    if (this.teacher.trails)
-      this.trailsSize = this.teacher.trails.length;
-  }
-
   getTrails() {
     if (this.teacher.teacherId) {
       this.teacherService
         .getTrails(this.teacher.teacherId)
-        .subscribe(trails => this.trails = trails);
+        .subscribe(trails => {
+          this.trails = trails;
+          this.trailsSize = trails.length;
+        });
     }
   }
 
@@ -127,6 +124,18 @@ export class TeacherHomeComponent implements OnInit {
 
   navigateToTrailPage(trail: Trail) {
     this.lastEndpoint = `/trail/${trail.trailId}`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
+  }
+
+  navigateToLogin() {
+    this.lastEndpoint = '/login';
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
+  }
+
+  navigateToInstitutionHome() {
+    this.lastEndpoint = `/institution/home/${this.teacher.teacherId}`;
     localStorage.setItem('lastEndpoint', this.lastEndpoint);
     this.router.navigate([this.lastEndpoint]);
   }

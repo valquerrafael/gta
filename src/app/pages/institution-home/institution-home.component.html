@@ -1,9 +1,16 @@
 <div>
   <p>
     <mat-toolbar class="topbar">
-      <span>Gestão de Trilha de Aprendizagem</span>
-      <div class="divider"></div>
-      <span>Home - Institution IFPB</span>
+      <div class="text">
+        <span>Gestão de Trilha de Aprendizagem</span>
+        <div class="divider"></div>
+        <span>Home - Institution IFPB</span>
+      </div>
+      <div class="button">
+        <button mat-icon-button (click)="navigateTo()" aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
     </mat-toolbar> 
   </p>
 </div>
@@ -29,19 +36,19 @@
         <div class="divider"></div>
         <div class="teachers">
           <mat-card-subtitle>Teachers</mat-card-subtitle>
-          <p>55</p>
+          <p>{{teachers.length}}</p>
         </div>
       </div>
       <div class="profileData2">
         <div class="divider"></div>
         <div class="students">
           <mat-card-subtitle>Students</mat-card-subtitle>
-          <p>1200</p>
+          <p>{{students.length}}</p>
         </div>
         <div class="divider"></div>
         <div class="trails">
           <mat-card-subtitle>Trails</mat-card-subtitle>
-          <p>5</p>
+          <p>{{trails.length}}</p>
         </div>
         <div class="divider"></div>
         <div class="empty"></div>
@@ -52,35 +59,20 @@
   <mat-card class="institutionRanking">
     <div class="profileHeader">
       <mat-icon aria-label="Example home icon" fontIcon="insights"></mat-icon>
-      <mat-card-title>Students Rank - IFPB</mat-card-title>
+      <mat-card-title>Trails List - IFPB</mat-card-title>
     </div>
-    <div class="dataSection2">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
-
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="points">
-          <th mat-header-cell *matHeaderCellDef> Points </th>
-          <td mat-cell *matCellDef="let element"> {{element.points}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    <div class="listTrails">
+      <mat-card *ngFor="let trail of trails" (click)="navigateTo(trail)">
+        <mat-card-content>
+          <p>{{trail.name}}</p>
+        </mat-card-content>
+        <mat-card-content>
+          <p>{{trail.description}}</p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" *ngIf="showSubscribeButton">
+          <button (click)="subscribe(trail)" mat-button>Subscribe</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </mat-card>
 </div>

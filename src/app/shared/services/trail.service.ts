@@ -29,4 +29,8 @@ export class TrailService {
   getStudents(id: number): Observable<Student[]> {
     return this.httpClient.get<Student[]>(`${this.API_URL}/${id}/students`);
   }
+
+  getAll(): Observable<Trail[]> {
+    return this.httpClient.get<Trail[]>(`${this.API_URL}/get-all`);
+  }
 }

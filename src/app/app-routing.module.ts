@@ -18,10 +18,6 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'institution-home',
-    component: InstitutionHomeComponent
-  },
-  {
     path: 'student/home/:id',
     component: StudentHomeComponent
   },
@@ -36,6 +32,10 @@ const routes: Routes = [
   {
     path: 'trail/:trailId',
     component: TrailPageComponent
+  },
+  {
+    path: 'institution/home/:id',
+    component: InstitutionHomeComponent
   }
 ]
 

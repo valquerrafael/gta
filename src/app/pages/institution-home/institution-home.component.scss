@@ -12,6 +12,17 @@
   text-align: center;
 }
 
+.topbar {
+  display: flex;
+}
+
+.topbar .text {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  width: 90%;
+}
+
 .institutionProfile {
   display: flex;
   flex-direction: column;
@@ -155,8 +166,22 @@
   justify-content: space-around !important;
 }
 
-.institutionRanking table {
-  width: 90%;
-  background-color: #f5f5f5;
-  margin-left: 30px;
+.listTrails {
+  padding-bottom: 20px;
+}
+
+.listTrails .buttons {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.listTrails mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: none;
+  border: 2px solid #dd6e42;
+  border-radius: 30px;
 }

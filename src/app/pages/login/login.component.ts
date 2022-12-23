@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     this.activatedRoute.snapshot.url.forEach(path => this.lastEndpoint += `/${path}`)
     localStorage.setItem('lastEndpoint', this.lastEndpoint);
     this.selectedEntity = 'teacher';
+    localStorage.setItem('entity', this.selectedEntity);
+    localStorage.setItem('entityId', '0');
   }
 
   openSnackBarFailedLogin() {
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         ) {
           this.lastEndpoint = `student/home/${student.studentId}`;
           localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          localStorage.setItem('entityId', `${student.studentId}`);
           this.router.navigate([this.lastEndpoint]);
           return;
         } else {
@@ -75,6 +78,7 @@ export class LoginComponent implements OnInit {
         ) {
           this.lastEndpoint = `teacher/home/${teacher.teacherId}`;
           localStorage.setItem('lastEndpoint', this.lastEndpoint);
+          localStorage.setItem('entityId', `${teacher.teacherId}`);
           this.router.navigate([this.lastEndpoint]);
           return;
         } else {

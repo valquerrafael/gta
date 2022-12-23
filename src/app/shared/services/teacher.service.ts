@@ -48,4 +48,8 @@ export class TeacherService {
   getTrails(id: number): Observable<Trail[]> {
     return this.httpClient.get<Trail[]>(`${this.API_URL}/${id}/trails`);
   }
+
+  getAll(): Observable<Teacher[]> {
+    return this.httpClient.get<Teacher[]>(`${this.API_URL}/get-all`);
+  }
 }

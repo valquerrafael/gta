@@ -94,4 +94,28 @@ export class StudentHomeComponent implements OnInit {
         });
     }
   }
+
+  navigateToLogin() {
+    this.lastEndpoint = '/login';
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
+  }
+
+  navigateToInstitutionHome() {
+    this.lastEndpoint = `/institution/home/${this.student.studentId}`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
+  }
+
+  navigateToTrailPage(trail: Trail) {
+    this.lastEndpoint = `/trail/${trail.trailId}`;
+    localStorage.setItem('lastEndpoint', this.lastEndpoint);
+    this.router.navigate([this.lastEndpoint]);
+  }
+
+  openSnackBarUnsubscribedTrail() {
+    this._snackBar.open('Trail unsubscribed successfully', 'Close', {
+      duration: 5000,
+    });
+  }
 }

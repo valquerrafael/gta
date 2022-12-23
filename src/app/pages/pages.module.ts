@@ -19,7 +19,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
-import { DialogDeleteStudentComponent } from './util/dialog-delete-student/dialog-delete-student.component';
 import { TrailFormComponent } from './trail-form/trail-form.component';
 import { TrailPageComponent } from './trail-page/trail-page.component';
 
@@ -31,7 +30,6 @@ import { TrailPageComponent } from './trail-page/trail-page.component';
     RegisterComponent,
     StudentHomeComponent,
     TeacherHomeComponent,
-    DialogDeleteStudentComponent,
     TrailFormComponent,
     TrailPageComponent    
   ],
@@ -58,7 +56,6 @@ import { TrailPageComponent } from './trail-page/trail-page.component';
     RegisterComponent,
     StudentHomeComponent,
     TeacherHomeComponent,
-    DialogDeleteStudentComponent,
     TrailFormComponent,
     TrailPageComponent
   ]

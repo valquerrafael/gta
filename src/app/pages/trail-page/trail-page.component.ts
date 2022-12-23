@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trail } from 'src/app/shared/model/Trail';
 import { TrailService } from '../../shared/services/trail.service';
 import { TrailContent } from '../../shared/model/TrailContent';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StudentService } from 'src/app/shared/services/student.service';
+import { Teacher } from 'src/app/shared/model/Teacher';
+import { Student } from 'src/app/shared/model/Student';
 
 @Component({
   selector: 'app-trail-page',
@@ -21,12 +23,14 @@ export class TrailPageComponent implements OnInit {
     trailId: 0
   };
   showScoreButton = false;
-  entityId = 0;
+  showDeleteButton = false;
+  showContentForm = false;
 
   constructor(
     private trailService: TrailService,
     private studentService: StudentService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private _snackBar: MatSnackBar
   ) { }
 
@@ -39,7 +43,8 @@ export class TrailPageComponent implements OnInit {
         this.trail = trail;
         this.content.trailId = trail.trailId;
       });
-    (params['studentId']) ? this.entityId = params['studentId'] : this.entityId = params['teacherId'];
+    (localStorage.getItem('entity') === 'teacher') ? this.showContentForm = true : this.showContentForm = false;
+    (localStorage.getItem('entity') === 'teacher') ? this.showDeleteButton = true : this.showDeleteButton = false;
   }
 
   openSnackBarCreatedContent() {
@@ -83,6 +88,44 @@ export class TrailPageComponent implements OnInit {
   }
 
   addScore(content: TrailContent) {
-    this.studentService.addScore(this.entityId, content).subscribe();
+    this.studentService.addScore(parseInt(<string>localStorage.getItem('entityId')), content).subscribe();
+    this.openSnackBarAddedScore();
+    this.showScoreButton = false;
+  }
+
+  navigateTo(entity?: Trail | Teacher | Student) {
+    let newLastEndpoint;
+
+    if (!entity) {
+      newLastEndpoint = `/${
+      (localStorage.getItem('entity') === 'teacher') ? 'teacher' : 'student'
+    }/home/${localStorage.getItem('entityId')}`;
+
+    }
+
+    if (entity instanceof Trail && entity.trailId) {
+      newLastEndpoint = `/trail/${entity.trailId}`;
+    }
+    if (
+      entity instanceof Teacher &&
+      localStorage.getItem('entity') === 'teacher' &&
+      entity.teacherId &&
+      entity.teacherId.toString() === localStorage.getItem('entityId')
+    ) {
+      newLastEndpoint = `/teacher/home/${entity.teacherId}`;
+    }
+    if (
+      entity instanceof Student &&
+      localStorage.getItem('entity') === 'student' &&
+      entity.studentId &&
+      entity.studentId.toString() === localStorage.getItem('entityId')
+    ) {
+      newLastEndpoint = `/student/home/${entity.studentId}`;
+    }
+
+    if (newLastEndpoint) {
+      localStorage.setItem('lastEndpoint', newLastEndpoint);
+      this.router.navigate([newLastEndpoint]);
+    }
   }
 }
